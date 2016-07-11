@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+require('dotenv').load();
 
 var dbURI = 'mongodb://localhost/Users';
 
