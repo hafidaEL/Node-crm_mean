@@ -6,6 +6,9 @@ var dbURI = 'mongodb://localhost/Users';
 if (process.env.NODE_ENV == 'production')
 	dbURI=process.env.MONGOLAB_URI ;
 
+console.log(" env : "+ process.env.NODE_ENV );
+console.log("db URI : "+dbURI);
+
 mongoose.connect(dbURI);
 
 var db = mongoose.connection;
