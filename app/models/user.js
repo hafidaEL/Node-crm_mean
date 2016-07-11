@@ -1,8 +1,12 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
+var dbURI = 'mongodb://localhost/Users';
 
-mongoose.connect('mongodb://localhost/Users');
+if (process.env.NODE_ENV == 'production')
+	dbURI=process.env.MONGOLAB_URI ;
+
+mongoose.connect(dbURI);
 
 var db = mongoose.connection;
 
