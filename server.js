@@ -6,6 +6,11 @@ var port = process.env.PORT || 8080;
 var jwt = require('jsonwebtoken');
 require('dotenv').load();
 
+// rootAPI = 'http://localhost:8080';
+
+// if (process.env.NODE_ENV == 'production')
+//   rootAPI='https://monapplinode.herokuapp.com';
+
 
 /* 
   protection de l'api  ==> authentification des routes avec jwt 

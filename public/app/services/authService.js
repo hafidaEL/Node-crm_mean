@@ -41,7 +41,7 @@ angular.module('myApp')
               delToken : delToken,
               authenticate : function(user) {
                                console.log('avant post vers api authenticate '+JSON.stringify(user));
-                return $http.post('http://localhost:8080/api/authenticate/', user)
+                return $http.post('/api/authenticate/', user)
                 			 .then(
                                 function(response){
                                   //response.data.user = user ; 
