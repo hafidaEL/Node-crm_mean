@@ -2,10 +2,10 @@
     <header ng-controller="userCtrl">
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Logo</a>
+                <a href="#/" class="brand-logo">Logo</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li ng-hide=' isLoggedIn() '><a href="#">Login</a></li>
-                    <li ng-show=' isLoggedIn() '><a href="#">Hello {{ currentUser().username }}</a></li>
+                    <li ng-hide=' isLoggedIn() '><a href="#/login">Login</a></li>
+                    <li ng-show=' isLoggedIn() '>Hello {{ currentUser().username }}</li>
                     <li ng-show=' isLoggedIn() '><a ng-click='logout()'>Logout</a></li>
                 </ul>
             </div>

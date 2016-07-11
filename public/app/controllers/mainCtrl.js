@@ -33,7 +33,7 @@ function mainCtrl($scope, authService, $localStorage) {
                     Materialize.toast($scope.message, 2000);
                     return;
                 }
-                
+                console.log("success "+$scope.success);
                 //$localStorage.username = $scope.user.username;
                 authService.saveToken($scope.token);
                 //console.log("ecriture $localStorage.username : " + $localStorage.username);

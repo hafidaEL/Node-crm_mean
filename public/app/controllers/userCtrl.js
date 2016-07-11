@@ -16,6 +16,7 @@ function userCtrl($scope, Users, $route, $routeParams, $localStorage, authServic
     {
             console.log("pas loggé ... au revoir ");
             authService.logout();
+            return;
     }
 
     $scope.users = [];
