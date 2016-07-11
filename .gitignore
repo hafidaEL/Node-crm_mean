@@ -1,0 +1,6 @@
+#on ignore les modules 
+node_modules
+
+
+#on envoie pas les variables d'environmements contenu dans le fichier .env
+.env
