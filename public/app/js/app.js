@@ -2,8 +2,6 @@ angular.module('myApp', ['ngRoute', 'ngAnimate', 'ngStorage'])
        .config(config);
 
 
-console.log('coucou') ;
-
 function config($routeProvider) {
 	$routeProvider
 		.when('/', {

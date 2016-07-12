@@ -27,7 +27,7 @@ angular.module('myApp')
                       {
                           var p = JSON.parse(window.atob(token.split('.')[1]));
                           expire = p.exp > Date.now() / 1000 ;
-                          console.log("isLoggedIn / date expiration token " + expire);
+                          //console.log("isLoggedIn / date expiration token " + expire);
                           return p.exp > Date.now() / 1000 ; 
                       } 
                       else {
@@ -40,13 +40,13 @@ angular.module('myApp')
               getToken : getToken,
               delToken : delToken,
               authenticate : function(user) {
-                               console.log('avant post vers api authenticate '+JSON.stringify(user));
+                               //console.log('avant post vers api authenticate '+JSON.stringify(user));
                 return $http.post('/api/authenticate/', user)
                 			 .then(
                                 function(response){
                                   //response.data.user = user ; 
                                   saveToken(response.data.token);
-                                console.log(" authentif : "+ response.data.message + " " + response.data.success + " " + response.data.user);
+                                //console.log(" authentif : "+ response.data.message + " " + response.data.success + " " + response.data.user);
                                    return  response.data ;  
 
                                 }
@@ -58,7 +58,7 @@ angular.module('myApp')
                 if (isLoggedIn()) {
                   var token = getToken();
                   var p = JSON.parse(window.atob(token.split('.')[1]));
-                  console.log("currentUser (trouvé dans token ) : "+p.username);
+                  //console.log("currentUser (trouvé dans token ) : "+p.username);
                   return {
                     name: p.name,
                     username: p.username
@@ -66,7 +66,7 @@ angular.module('myApp')
                 }
               },
               logout : function () {
-                          //console.log('logout');
+                          ////console.log('logout');
                            delToken(); 
                            window.location = "#/login";
                       }

@@ -4,17 +4,17 @@ angular.module('myApp')
        .controller('userCtrl', userCtrl);
 
 // penser à recuperer le parametre "mode" pour savoir si edition ou creation d'un utilisateur 
-  //  console.log("je suis avant controller userCtrl");
+  //  //console.log("je suis avant controller userCtrl");
 
 
 function userCtrl($scope, Users, $route, $routeParams, $localStorage, authService) {
     
-    console.log("je suis dans controller userCtrl");
+    //console.log("je suis dans controller userCtrl");
 
     // On vérifie si le token existe et qu'il est valide
     if ( ! authService.isLoggedIn() )
     {
-            console.log("pas loggé ... au revoir ");
+            //console.log("pas loggé ... au revoir ");
             authService.logout();
             return;
     }
@@ -24,19 +24,19 @@ function userCtrl($scope, Users, $route, $routeParams, $localStorage, authServic
 
     // $scope.currentUser = authService.currentUser();
    // $scope.isLoggedIn = authService.isLoggedIn();
-   // console.log("isLoggedIn "+ $scope.isLoggedIn);
+   // //console.log("isLoggedIn "+ $scope.isLoggedIn);
 
-    //console.log("lecture $localStorage.username : " + $localStorage.username);
+    ////console.log("lecture $localStorage.username : " + $localStorage.username);
     /*if ($scope.currentUser != undefined) {
         $scope.user.username = $scope.currentUser.username ;
-        console.log('donc $scope.user.username = '+ $scope.user.username);
+        //console.log('donc $scope.user.username = '+ $scope.user.username);
     }*/
 
     $scope.mode = $route.current.$$route.mode;
 
     if ($scope.mode == "edition")
         Users.get_user($routeParams.idUser).then(function (data) {
-             //console.log("mode : "+ $scope.mode + " "+ $routeParams.idUser);
+             ////console.log("mode : "+ $scope.mode + " "+ $routeParams.idUser);
             $scope.user = data ; 
         })
 
@@ -52,14 +52,10 @@ function userCtrl($scope, Users, $route, $routeParams, $localStorage, authServic
     
 
     $scope.Add = function () {
-        console.log('Add : ' + $scope.user.name + " " +
-                    'Name : ' + $scope.user.name + " " +
-                    'Username : ' + $scope.user.username + " " +
-                    'Password : ' + $scope.user.password);
-       
+      
         
          Users.create_user($scope.user).then(function (data) {
-             console.log('Ajout effectué');
+             //console.log('Ajout effectué');
 
              $scope.user.name = '';
              $scope.user.username = '';
@@ -70,16 +66,16 @@ function userCtrl($scope, Users, $route, $routeParams, $localStorage, authServic
 
          }).catch(function (err) {
              Materialize.toast("Erreur lors de l'ajout !", 2000);
-              //console.log("Erreur lors de l'ajout de l'utilisateur" + err);
+              ////console.log("Erreur lors de l'ajout de l'utilisateur" + err);
          });
     };
 
     $scope.Update = function () {
-        console.log('Update : ' + $scope.user.name);
-        console.log('id : '+ $scope.user._id);
+        //console.log('Update : ' + $scope.user.name);
+        //console.log('id : '+ $scope.user._id);
         
          Users.update_user($scope.user).then(function (data) {
-             console.log('Mise à jour effectuée');
+             //console.log('Mise à jour effectuée');
              $scope.user.name = '';
              $scope.user.username = '';
              $scope.user.password = '';
@@ -88,38 +84,42 @@ function userCtrl($scope, Users, $route, $routeParams, $localStorage, authServic
 
          }).catch(function (err) {
                 Materialize.toast("Erreur lors de la mise à jour !", 2000);
-              // console.log("Erreur lors de la mise à jour de l'utilisateur" + err);
+              // //console.log("Erreur lors de la mise à jour de l'utilisateur" + err);
          });
     };
 
+    $scope.Edit  = function (id) {
+        window.location = "#/edit_user/" + id;
+    };
+
     $scope.Del = function (id) {
-        console.log('Del id : ' + id); 
-        
-        console.log("avant "+$scope.users.length);
-        console.log("avant users"+JSON.stringify($scope.users));
- 
+        //console.log('Del id : ' + id); 
+
+        //console.log("avant "+$scope.users.length);
+        //console.log("avant users"+JSON.stringify($scope.users));
+    
         Users.delete_user(id).then(function (data) {
-             console.log('Suppression effectuée');
+             //console.log('Suppression effectuée');
 
             function findUser(user) {
               return user._id === id;
             }
 
-            //console.log("l'utilisateur à supprimer est : " + JSON.stringify($scope.users.find(findUser)));
+            ////console.log("l'utilisateur à supprimer est : " + JSON.stringify($scope.users.find(findUser)));
             var usertoDel = $scope.users.find(findUser);
 
             var indextoDel = $scope.users.indexOf(usertoDel);
 
              //$scope.users.splice(id,1);
              $scope.users.splice(indextoDel,1);
-             console.log("apres "+$scope.users.length);
-             console.log("après users"+JSON.stringify($scope.users));
+             //console.log("apres "+$scope.users.length);
+             //console.log("après users"+JSON.stringify($scope.users));
 
              Materialize.toast("L'utilisateur a bien été supprimé!", 2000);
 
         }).catch(function (err) {
               Materialize.toast("Erreur lors de la suppression !", 2000);
-              console.log("Erreur lors de la suppression " + err);
+              //console.log("Erreur lors de la suppression " + err);
         });
     };   
 
