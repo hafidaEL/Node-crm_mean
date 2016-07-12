@@ -93,13 +93,28 @@ function userCtrl($scope, Users, $route, $routeParams, $localStorage, authServic
     };
 
     $scope.Del = function (id) {
-        console.log('Del : ' + id); 
+        console.log('Del id : ' + id); 
+        
         console.log("avant "+$scope.users.length);
+        console.log("avant users"+JSON.stringify($scope.users));
  
         Users.delete_user(id).then(function (data) {
              console.log('Suppression effectuée');
-             $scope.users.splice(id,1);
+
+            function findUser(user) {
+              return user._id === id;
+            }
+
+            //console.log("l'utilisateur à supprimer est : " + JSON.stringify($scope.users.find(findUser)));
+            var usertoDel = $scope.users.find(findUser);
+
+            var indextoDel = $scope.users.indexOf(usertoDel);
+
+             //$scope.users.splice(id,1);
+             $scope.users.splice(indextoDel,1);
              console.log("apres "+$scope.users.length);
+             console.log("après users"+JSON.stringify($scope.users));
+
              Materialize.toast("L'utilisateur a bien été supprimé!", 2000);
 
         }).catch(function (err) {
